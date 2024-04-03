@@ -24,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>Self-Guided Diffusion Models</title>
+  <title>Guided Flow Vision Transformer from Self-Supervised Diffusion Features</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
@@ -60,28 +60,35 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Self-Guided Diffusion Models</h1>
+            <h1 class="title is-1 publication-title">Guided Flow Vision Transformer from Self-Supervised Diffusion Features</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="https://taohu.me/" target="_blank">Vincent Tao HU</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="https://davzha.netlify.app/" target="_blank"> David W Zhang</a><sup>*</sup>,</span>
+                <a href="https://taohu.me/" target="_blank">Vincent Tao HU</a>,</span>
+
+                  <span class="author-block">
+                    <a href="https://yunlu-chen.github.io/" target="_blank">Yunlu Chen</a>,
+                  </span>
                   <span class="author-block">
                     <a href="https://yukimasano.github.io/" target="_blank">Yuki M. Asano</a>,
                   </span>
                   <span class="author-block">
-                    <a href="https://gertjanburghouts.github.io/" target="_blank">Gertjan J. Burghouts</a>,
+                    <a href="https://www.google.com/search?q=mathilde+caron&rlz=1C5CHFA_enDE1097DE1097&oq=Mathilde+Caron&gs_lcrp=EgZjaHJvbWUqDAgAECMYJxiABBiKBTIMCAAQIxgnGIAEGIoFMgcIARAuGIAEMgcIAhAAGIAEMgcIAxAAGIAEMggIBBAAGBYYHjIICAUQABgWGB4yCAgGEAAYFhgeMgYIBxBFGD3SAQcxNjFqMGo0qAIAsAIA&sourceid=chrome&ie=UTF-8" target="_blank">Mathilde Caron</a>,
                   </span>
                   <span class="author-block">
-                    <a href="https://www.ceessnoek.info/" target="_blank">Cees G. M. Snoek</a>
+                    <a href="https://www.ceessnoek.info/" target="_blank">Cees G. M. Snoek</a>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://ommer-lab.com/people/ommer/" target="_blank">Bjorn Ommer</a>
                   </span>
                   
                   </div>
 
+              
+
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block">University of Amsterdam, TNO<br>CVPR 2023</span>
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+                    <span class="author-block">LMU Munich, CMU, University of Amsterdam, Google<br>Arxiv 2024</span>
+                    
                   </div>
 
                   <div class="column has-text-centered">
@@ -90,7 +97,7 @@
 
                    <!-- ArXiv abstract Link -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2210.06462" target="_blank"
+                  <a href="https://arxiv.org/abs/2312.08825" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
@@ -101,7 +108,7 @@
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/dongzhuoyao/self-guided-diffusion-models" target="_blank"
+                    <a href="https://github.com/dongzhuoyao/sgfm" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -147,12 +154,11 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Diffusion models have demonstrated remarkable progress in image generation quality, especially when guidance is used to control the generative process. However, guidance requires a large amount of image-annotation pairs for training and is thus dependent on their availability, correctness and unbiasedness. In this paper, we eliminate the need for such annotation by instead leveraging the flexibility of self-supervision signals to design a framework for self-guided diffusion models. By leveraging a feature extraction function and a self-annotation function, our method provides guidance signals at various image granularities: from the level of holistic images to object boxes and even segmentation masks. Our experiments on single-label and multi-label image datasets demonstrate that self-labeled guidance always outperforms diffusion models without guidance and may even surpass guidance based on ground-truth labels, especially on unbalanced data. When equipped with self-supervised box or mask proposals, our method further generates visually diverse yet semantically consistent images, without the need for any class, box, or segment label annotation. Self-guided diffusion is simple, flexible and expected to profit from deployment at scale.
+            Guidance serves as a key concept in diffusion models, yet its effectiveness is often limited by the need for extra data annotation or classifier pretraining. That is why guidance was harnessed from self-supervised learning backbones, like DINO. However, recent studies have revealed that the feature representation derived from diffusion model itself is discriminative for numerous downstream tasks as well, which prompts us to propose a framework to extract guidance from, and specifically for, diffusion models. Our research has yielded several significant contributions. Firstly, the guidance signals from diffusion models are on par with those from class-conditioned diffusion models. Secondly, feature regularization, when based on the Sinkhorn-Knopp algorithm, can further enhance feature discriminability in comparison to unconditional diffusion models. Thirdly, we have constructed an online training approach that can concurrently derive guidance from diffusion models for diffusion models. Lastly, we have extended the application of diffusion models along the constant velocity path of ODE to achieve a more favorable balance between sampling steps and fidelity. The performance of our methods has been outstanding, outperforming related baseline comparisons in large-resolution datasets, such as ImageNet256, ImageNet256-100 and LSUN-Churches. Our code will be released.
           </p>
 
-          <img src="imgs/why_sgdm.png" alt="abstract" width="100%" height="100%">
-          <img src="imgs/sgdm_gif.gif" alt="abstract" width="100%" height="100%">
-          <img src="imgs/sgdm.png" alt="abstract" width="100%" height="100%">
+
+         
         </div>
       </div>
     </div>
@@ -203,25 +209,6 @@
 
 
 
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/zwkn640t-u8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End youtube video -->
 
 
 <!-- Video carousel -->
@@ -281,12 +268,13 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>@inproceedings{hu2023self,
-        title={Self-guided diffusion models},
-        author={Hu, Vincent Tao and Zhang, David W and Asano, Yuki M and Burghouts, Gertjan J and Snoek, Cees GM},
-        booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-        pages={18413--18422},
-        year={2023}
+      <pre><code>
+        @inproceedings{sgfm,
+                 title={Guided Diffusion from Self-Supervised Diffusion Features},
+                 author={Vincent Tao Hu and  Yunlu Chen and Mathilde Caron and Yuki M Asano and Cees G. M. Snoek and Björn Ommer},
+                  year={2024},
+                  booktitle={Arxiv},
+              }
       }</code></pre>
     </div>
 </section>
